@@ -11,9 +11,9 @@
 //
 //Feel free to change these
 
-final double spreadChance = .005;
+final double spreadChance = .0005;
 final int spreadRadius = 100;
-final double chanceOfImmunity = .001;
+final double chanceOfImmunity = .00001;
 final double chanceOfDeath = 0.0005;
 
 //You can use "random", "normal", "boid"
@@ -29,6 +29,7 @@ final static class colors {
   final static color imune = #0000ff;
   final static color dead = #696969;
 }
+final int deadOpacity = 200;
 
 final int padding = 50;
 
@@ -42,6 +43,7 @@ int totalStartPeople;
 boolean paused = false;
 
 ArrayList<Human> humans = new ArrayList<Human>();
+ArrayList<Human> deadHumans = new ArrayList<Human>();
 ArrayList<GameState> gameStates = new ArrayList<GameState>();
 
 
@@ -60,8 +62,8 @@ void setup() {
     humans.add(new Human(false));
   }
 
-  gameStates.add(new GameState(humans));
-  gameStates.add(new GameState(humans));
+  gameStates.add(new GameState(humans, deadHumans));
+  gameStates.add(new GameState(humans, deadHumans));
 }
 
 void draw() {
@@ -71,15 +73,24 @@ void draw() {
     strokeWeight(2);
     stroke(0);
     for (int i = 0; i < humans.size(); i++) {
+      humans.get(i).show();
       if (!paused) {
         humans.get(i).update();
       }
-      humans.get(i).show();
+    }
+    for (int i = 0; i < deadHumans.size(); i++) {
+      deadHumans.get(i).show();
+      if (!paused) {
+        deadHumans.get(i).update();
+      }
     }
   } else {
     if (!paused) {
       for (int i = 0; i < humans.size(); i++) {
         humans.get(i).update();
+      }
+      for (int i = 0; i < deadHumans.size(); i++) {
+        deadHumans.get(i).update();
       }
     }
 
@@ -91,7 +102,7 @@ void draw() {
       framesSinceSnapshot++;
     } else {
       framesSinceSnapshot = 0;
-      gameStates.add(new GameState(humans));
+      gameStates.add(new GameState(humans, deadHumans));
       //println(gameStates.get(gameStates.size() - 1).healthy);
     }
   }

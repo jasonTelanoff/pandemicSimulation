@@ -33,6 +33,7 @@ class Human {
   }
 
   void update() {
+    if(state != "dead") {
     if (infected) {
       float num = random(1);
       if (num <= chanceOfImmunity) {
@@ -43,6 +44,8 @@ class Human {
       } else if (num <= chanceOfImmunity + chanceOfDeath) {
         state = "dead";
         infected = false;
+        deadHumans.add(this);
+        humans.remove(this);
       } else {
         spread();
       }
@@ -62,7 +65,7 @@ class Human {
       break;
     }
     borders();
-  }
+  }}
 
   void randomMove() {
     position.add(PVector.random2D());
@@ -228,7 +231,7 @@ class Human {
     case "imune":
       return colors.imune;
     case "dead":
-      return colors.dead;
+      return color(colors.dead, deadOpacity);
     default:
       println("this is it");
       state = "healthy";

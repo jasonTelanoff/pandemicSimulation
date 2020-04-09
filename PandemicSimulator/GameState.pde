@@ -7,11 +7,11 @@ class GameState {
   final int imuneGraph;
   final int deadGraph;
 
-  GameState(ArrayList<Human> _humans) {
+  GameState(ArrayList<Human> _humans, ArrayList<Human> _deadHumans) {
     int _healthy = 0;
     int _infected = 0;
     int _imune = 0;
-    int _dead = 0;
+    int _dead = deadHumans.size();
 
     for (int i = 0; i < _humans.size(); i++) {
       switch(_humans.get(i).state) {
