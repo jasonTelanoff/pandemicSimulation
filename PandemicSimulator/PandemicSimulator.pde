@@ -13,16 +13,15 @@
 
 final double spreadChance = .005;
 final int spreadRadius = 50;
-final double chanceOfImmunity = .0001;
+final double chanceOfImmunity = .001;
 final double chanceOfDeath = 0.0005;
-final double movementSpeed = 1;
 
 //You can use "random", "normal", "boid"
-final String behavior = "boid";
+final String behavior = "random`";
 final boolean breeding = false;
 final static class startNumOfPeople {
   final static int healthy = 100;
-  final static int infected = 100;
+  final static int infected = 10;
 };
 final static class colors {
   final static color healthy = #00ff00;
