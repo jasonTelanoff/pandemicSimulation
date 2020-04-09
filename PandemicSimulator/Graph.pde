@@ -1,5 +1,3 @@
-final int padding = 50;
-
 class Point {
   final int x;
   final int y;
@@ -13,9 +11,9 @@ class Point {
 void drawGraph() {
   drawLine(
     new Point(padding, (int) map(gameStates.get(0).healthy, 0, totalStartPeople, height - padding, padding)), 
-    new Point(padding, (int) map(gameStates.get(0).infectedGraph, 0, totalStartPeople, height - padding, padding)), 
-    new Point(padding, (int) map(gameStates.get(0).imuneGraph, 0, totalStartPeople, height - padding, padding)), 
-    new Point(padding, (int) map(gameStates.get(0).deadGraph, 0, totalStartPeople, height - padding, padding)), 
+    new Point(padding, (int) map(gameStates.get(0).infected, 0, totalStartPeople, height - padding, padding)), 
+    new Point(padding, (int) map(gameStates.get(0).imune, 0, totalStartPeople, height - padding, padding)), 
+    new Point(padding, (int) map(gameStates.get(0).dead, 0, totalStartPeople, height - padding, padding)), 
     1);
 }
 
@@ -25,13 +23,13 @@ void drawLine(Point prevHealthy, Point prevInfec, Point prevImune, Point prevDea
     (int) map(gameStates.get(i).healthy, 0, totalStartPeople, height - padding, padding));
   Point pointInfected = new Point(
     (int) map(i, 0, gameStates.size() - 1, padding, width - padding), 
-    (int) map(gameStates.get(i).infectedGraph, 0, totalStartPeople, height - padding, padding));
+    (int) map(gameStates.get(i).infected, 0, totalStartPeople, height - padding, padding));
   Point pointImune = new Point(
     (int) map(i, 0, gameStates.size() - 1, padding, width - padding), 
-    (int) map(gameStates.get(i).imuneGraph, 0, totalStartPeople, height - padding, padding));
+    (int) map(gameStates.get(i).imune, 0, totalStartPeople, height - padding, padding));
   Point pointDead = new Point(
     (int) map(i, 0, gameStates.size() - 1, padding, width - padding), 
-    (int) map(gameStates.get(i).deadGraph, 0, totalStartPeople, height - padding, padding));
+    (int) map(gameStates.get(i).dead, 0, totalStartPeople, height - padding, padding));
 
   //noStroke();
   //fill(colors.dead);
@@ -46,9 +44,14 @@ void drawLine(Point prevHealthy, Point prevInfec, Point prevImune, Point prevDea
     
   strokeWeight(10);
   stroke(0);
+  
+  stroke(colors.dead);
     line(prevDead.x, prevDead.y, pointDead.x, pointDead.y);
+  stroke(colors.imune);
     line(prevImune.x, prevImune.y, pointImune.x, pointImune.y);
+  stroke(colors.infected);
     line(prevInfec.x, prevInfec.y, pointInfected.x, pointInfected.y);
+  stroke(colors.healthy);
     line(prevHealthy.x, prevHealthy.y, pointHealthy.x, pointHealthy.y);
 
   if (i < gameStates.size() - 1) {

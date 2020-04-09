@@ -1,8 +1,8 @@
 class GameState {
   final int healthy;
-  //final int infected;
-  //final int imune;
-  //final int dead;
+  final int infected;
+  final int imune;
+  final int dead;
   final int infectedGraph;
   final int imuneGraph;
   final int deadGraph;
@@ -30,9 +30,9 @@ class GameState {
       }
     }
     healthy = _healthy;
-    //infected = _infected;
-    //imune = _imune;
-    //dead = _dead;
+    infected = _infected;
+    imune = _imune;
+    dead = _dead;
     
     infectedGraph = _healthy + _infected;
     imuneGraph = _healthy + _infected + _imune;

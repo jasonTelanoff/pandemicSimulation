@@ -1,17 +1,28 @@
+//  _________________
+// |_______   _______| 
+//         | |
+//         | |
+//         | |
+//  _      | |
+// | |     | |
+// \ \     | |
+//  \ \___/  /
+//   \______/
+//
 //Feel free to change these
 
-final double spreadChance = .1;
+final double spreadChance = .005;
 final int spreadDistance = 50;
-final double chanceOfImmunity = .001;
+final double chanceOfImmunity = .0001;
 final double chanceOfDeath = 0.0005;
 final double movementSpeed = 1;
 
-//You can use "random", "normal", "boid", or "staySafe"
+//You can use "random", "normal", "boid"
 final String behavior = "boid";
 final boolean breeding = false;
 final static class startNumOfPeople {
-  final static int healthy = 90;
-  final static int infected = 10;
+  final static int healthy = 100;
+  final static int infected = 100;
 };
 final static class colors {
   final static color healthy = #00ff00;
@@ -19,6 +30,8 @@ final static class colors {
   final static color imune = #0000ff;
   final static color dead = #696969;
 }
+
+final int padding = 50;
 
 final int snapshotFrames = 30;
 
@@ -41,10 +54,10 @@ void setup() {
 
   totalStartPeople = startNumOfPeople.healthy + startNumOfPeople.infected;
 
-  for (int i = 1; i < startNumOfPeople.infected; i++) {
+  for (int i = 0; i < startNumOfPeople.infected; i++) {
     humans.add(new Human(true));
   }
-  for (int i = 1; i < startNumOfPeople.healthy; i++) {
+  for (int i = 0; i < startNumOfPeople.healthy; i++) {
     humans.add(new Human(false));
   }
 
