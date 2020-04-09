@@ -208,7 +208,7 @@ class Human {
       if (random(1) <= spreadChance) {
         Human otherGuy = humans.get(i);
         if (otherGuy.state == "healthy") {
-          if (dist(position.x, position.y, otherGuy.position.x, otherGuy.position.y) <= spreadDistance) {
+          if (dist(position.x, position.y, otherGuy.position.x, otherGuy.position.y) <= spreadRadius) {
             humans.get(i).state = "infected";
             humans.get(i).infected = true;
             humans.add(humans.get(i));

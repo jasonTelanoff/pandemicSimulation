@@ -12,7 +12,7 @@
 //Feel free to change these
 
 final double spreadChance = .005;
-final int spreadDistance = 50;
+final int spreadRadius = 50;
 final double chanceOfImmunity = .0001;
 final double chanceOfDeath = 0.0005;
 final double movementSpeed = 1;
