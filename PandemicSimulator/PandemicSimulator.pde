@@ -11,10 +11,11 @@
 //
 //Feel free to change these
 
-final double spreadChance = .0005;
+final double spreadChance = .005;
 final int spreadRadius = 100;
 final double chanceOfImmunity = .00001;
 final double chanceOfDeath = 0.0005;
+final double distEffect = 0.5;
 
 //You can use "random", "normal", "boid"
 final String behavior = "boid";

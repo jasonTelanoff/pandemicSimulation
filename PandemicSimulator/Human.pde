@@ -33,39 +33,40 @@ class Human {
   }
 
   void update() {
-    if(state != "dead") {
-    if (infected) {
-      float num = random(1);
-      if (num <= chanceOfImmunity) {
-        state = "imune";
-        infected = false;
-        humans.add(this);
-        humans.remove(this);
-      } else if (num <= chanceOfImmunity + chanceOfDeath) {
-        state = "dead";
-        infected = false;
-        deadHumans.add(this);
-        humans.remove(this);
-      } else {
-        spread();
+    if (state != "dead") {
+      if (infected) {
+        float num = random(1);
+        if (num <= chanceOfImmunity) {
+          state = "imune";
+          infected = false;
+          humans.add(this);
+          humans.remove(this);
+        } else if (num <= chanceOfImmunity + chanceOfDeath) {
+          state = "dead";
+          infected = false;
+          deadHumans.add(this);
+          humans.remove(this);
+        } else {
+          spread();
+        }
       }
+      switch (behavior) {
+      case "random":
+        randomMove();
+        break;
+      case "normal":
+        normalMove();
+        break;
+      case "boid":
+        boidMove();
+        break;
+      default:
+        normalMove();
+        break;
+      }
+      borders();
     }
-    switch (behavior) {
-    case "random":
-      randomMove();
-      break;
-    case "normal":
-      normalMove();
-      break;
-    case "boid":
-      boidMove();
-      break;
-    default:
-      normalMove();
-      break;
-    }
-    borders();
-  }}
+  }
 
   void randomMove() {
     position.add(PVector.random2D());
@@ -208,15 +209,14 @@ class Human {
 
   void spread() {
     for (int i = 0; i < humans.size(); i++) {
-      if (random(1) <= spreadChance) {
-        Human otherGuy = humans.get(i);
-        if (otherGuy.state == "healthy") {
-          if (dist(position.x, position.y, otherGuy.position.x, otherGuy.position.y) <= spreadRadius) {
+      Human otherGuy = humans.get(i);
+      if (otherGuy.state == "healthy") {
+        float dist = dist(position.x, position.y, otherGuy.position.x, otherGuy.position.y);
+        if (random(1) <= (-pow(dist, 2)*distEffect*spreadChance)/(2*pow(spreadRadius, 1.69)) + spreadChance) {
             humans.get(i).state = "infected";
             humans.get(i).infected = true;
             humans.add(humans.get(i));
             humans.remove(i);
-          }
         }
       }
     }
