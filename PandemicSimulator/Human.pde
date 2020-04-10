@@ -225,13 +225,13 @@ class Human {
   color col() {
     switch(state) {
     case "healthy":
-      return colors.healthy;
+      return colors.get("healthy");
     case "infected":
-      return colors.infected;
+      return colors.get("infected");
     case "imune":
-      return colors.imune;
+      return colors.get("imune");
     case "dead":
-      return color(colors.dead, deadOpacity);
+      return color(colors.get("dead"), deadOpacity);
     default:
       println("this is it");
       state = "healthy";

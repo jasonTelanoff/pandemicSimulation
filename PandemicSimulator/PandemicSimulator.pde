@@ -25,12 +25,8 @@ final static class startNumOfPeople {
 };
 final int hospitalRoom = 200;
 
-final static class colors {
-  final static color healthy = #00ff00;
-  final static color infected = #ff0000;
-  final static color imune = #0000ff;
-  final static color dead = #696969;
-}
+final static HashMap<String, Integer> colors = new HashMap<String, Integer>();
+
 final int deadOpacity = 200;
 
 final int padding = 50;
@@ -66,6 +62,11 @@ void setup() {
 
   gameStates.add(new GameState(humans, deadHumans));
   gameStates.add(new GameState(humans, deadHumans));
+
+  colors.put("healthy", #00ff00);
+  colors.put("infected", #ff0000);
+  colors.put("imune", #0000ff);
+  colors.put("dead", #696969);
 }
 
 void draw() {
@@ -98,12 +99,12 @@ void draw() {
 
     drawGraph();
     float y = map(hospitalRoom, 0, totalStartPeople, height - padding, padding);
-    if(gameStates.get(gameStates.size() - 1).values.get("infected") <= hospitalRoom) {
-      stroke(colors.healthy);
+    if (gameStates.get(gameStates.size() - 1).values.get("infected") <= hospitalRoom) {
+      stroke(colors.get("healthy"));
     } else {
-      stroke(colors.infected);
+      stroke(colors.get("infected"));
     }
-    line(padding, y, width - padding, y); 
+    line(padding, y, width - padding, y);
   }
 
   if (!paused) {
