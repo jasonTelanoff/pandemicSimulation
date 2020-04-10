@@ -13,16 +13,18 @@
 
 final double spreadChance = .005;
 final int spreadRadius = 100;
-final double chanceOfImmunity = .00001;
+final double chanceOfImmunity = .001;
 final double chanceOfDeath = 0.0005;
 final double distEffect = 0.5;
 
 //You can use "random", "normal", "boid"
 final String behavior = "boid";
 final static class startNumOfPeople {
-  final static int healthy = 999;
+  final static int healthy = 199;
   final static int infected = 1;
 };
+final int hospitalRoom = 200;
+
 final static class colors {
   final static color healthy = #00ff00;
   final static color infected = #ff0000;
@@ -95,6 +97,13 @@ void draw() {
     }
 
     drawGraph();
+    float y = map(hospitalRoom, 0, totalStartPeople, height - padding, padding);
+    if(gameStates.get(gameStates.size() - 1).infected <= hospitalRoom) {
+      stroke(colors.healthy);
+    } else {
+      stroke(colors.infected);
+    }
+    line(padding, y, width - padding, y); 
   }
 
   if (!paused) {
