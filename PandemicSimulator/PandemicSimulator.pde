@@ -19,7 +19,6 @@ final double distEffect = 0.5;
 
 //You can use "random", "normal", "boid"
 final String behavior = "boid";
-final boolean breeding = false;
 final static class startNumOfPeople {
   final static int healthy = 999;
   final static int infected = 1;
