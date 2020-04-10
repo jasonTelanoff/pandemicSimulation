@@ -13,8 +13,8 @@
 
 final double spreadChance = .005;
 final int spreadRadius = 100;
-final double chanceOfImmunity = .001;
-final double chanceOfDeath = 0.0005;
+final double chanceOfImmunity = .0001;
+final double chanceOfDeath = 0.00005;
 final double distEffect = 0.5;
 
 //You can use "random", "normal", "boid"
@@ -119,6 +119,7 @@ void draw() {
   fill(0);
   textSize(20);
   text(frameRate, 20, 30);
+  text("v1.1.2", width - 70, height - 30);
 }
 
 void keyReleased() {
