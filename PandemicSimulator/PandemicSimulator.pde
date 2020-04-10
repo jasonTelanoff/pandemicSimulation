@@ -98,7 +98,7 @@ void draw() {
 
     drawGraph();
     float y = map(hospitalRoom, 0, totalStartPeople, height - padding, padding);
-    if(gameStates.get(gameStates.size() - 1).infected <= hospitalRoom) {
+    if(gameStates.get(gameStates.size() - 1).values.get("infected") <= hospitalRoom) {
       stroke(colors.healthy);
     } else {
       stroke(colors.infected);

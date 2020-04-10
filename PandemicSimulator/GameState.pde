@@ -1,12 +1,6 @@
 class GameState {
-  final int healthy;
-  final int infected;
-  final int imune;
-  final int dead;
-  final int infectedGraph;
-  final int imuneGraph;
-  final int deadGraph;
-
+  final HashMap<String,Integer> values = new HashMap<String,Integer>();
+  
   GameState(ArrayList<Human> _humans, ArrayList<Human> _deadHumans) {
     int _healthy = 0;
     int _infected = 0;
@@ -29,13 +23,13 @@ class GameState {
         break;
       }
     }
-    healthy = _healthy;
-    infected = _infected;
-    imune = _imune;
-    dead = _dead;
+    values.put("healthy", _healthy);
+    values.put("infected", _infected);
+    values.put("imune", _imune);
+    values.put("dead", _dead);
     
-    infectedGraph = _healthy + _infected;
-    imuneGraph = _healthy + _infected + _imune;
-    deadGraph = _healthy + _infected + _imune + _dead;
+    values.put("infectedGraph", _healthy + _infected);
+    values.put("imuneGraph", _healthy + _infected + _imune);
+    values.put("deadGraph", _healthy + _infected + _imune + _dead);
   }
 }

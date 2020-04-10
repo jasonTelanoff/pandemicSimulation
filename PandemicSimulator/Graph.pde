@@ -8,28 +8,30 @@ class Point {
   }
 }
 
+ArrayList<int[]> ys = new ArrayList<int[]>();
+
 void drawGraph() {
   drawLine(
-    new Point(padding, (int) map(gameStates.get(0).healthy, 0, totalStartPeople, height - padding, padding)), 
-    new Point(padding, (int) map(gameStates.get(0).infected, 0, totalStartPeople, height - padding, padding)), 
-    new Point(padding, (int) map(gameStates.get(0).imune, 0, totalStartPeople, height - padding, padding)), 
-    new Point(padding, (int) map(gameStates.get(0).dead, 0, totalStartPeople, height - padding, padding)), 
+    new Point(padding, (int) map(gameStates.get(0).values.get("healthy"), 0, totalStartPeople, height - padding, padding)), 
+    new Point(padding, (int) map(gameStates.get(0).values.get("infected"), 0, totalStartPeople, height - padding, padding)), 
+    new Point(padding, (int) map(gameStates.get(0).values.get("imune"), 0, totalStartPeople, height - padding, padding)), 
+    new Point(padding, (int) map(gameStates.get(0).values.get("dead"), 0, totalStartPeople, height - padding, padding)), 
     1);
 }
 
 void drawLine(Point prevHealthy, Point prevInfec, Point prevImune, Point prevDead, int i) {
   Point pointHealthy = new Point(
     (int) map(i, 0, gameStates.size() - 1, padding, width - padding), 
-    (int) map(gameStates.get(i).healthy, 0, totalStartPeople, height - padding, padding));
+    (int) map(gameStates.get(i).values.get("healthy"), 0, totalStartPeople, height - padding, padding));
   Point pointInfected = new Point(
     (int) map(i, 0, gameStates.size() - 1, padding, width - padding), 
-    (int) map(gameStates.get(i).infected, 0, totalStartPeople, height - padding, padding));
+    (int) map(gameStates.get(i).values.get("infected"), 0, totalStartPeople, height - padding, padding));
   Point pointImune = new Point(
     (int) map(i, 0, gameStates.size() - 1, padding, width - padding), 
-    (int) map(gameStates.get(i).imune, 0, totalStartPeople, height - padding, padding));
+    (int) map(gameStates.get(i).values.get("imune"), 0, totalStartPeople, height - padding, padding));
   Point pointDead = new Point(
     (int) map(i, 0, gameStates.size() - 1, padding, width - padding), 
-    (int) map(gameStates.get(i).dead, 0, totalStartPeople, height - padding, padding));
+    (int) map(gameStates.get(i).values.get("dead"), 0, totalStartPeople, height - padding, padding));
 
   //noStroke();
   //fill(colors.dead);
