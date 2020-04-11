@@ -23,7 +23,7 @@ final static class startNumOfPeople {
   final static int healthy = 199;
   final static int infected = 1;
 };
-final int hospitalRoom = 200;
+final int hospitalRoom = 100;
 
 final static HashMap<String, Integer> colors = new HashMap<String, Integer>();
 
@@ -35,7 +35,7 @@ final int snapshotFrames = 30;
 
 
 //Don't change these
-boolean graph = false;
+boolean graph = true;
 int framesSinceSnapshot = 0;
 int totalStartPeople;
 boolean paused = false;
@@ -43,6 +43,7 @@ boolean paused = false;
 ArrayList<Human> humans = new ArrayList<Human>();
 ArrayList<Human> deadHumans = new ArrayList<Human>();
 ArrayList<GameState> gameStates = new ArrayList<GameState>();
+ArrayList<HashMap> pointY = new ArrayList<HashMap>();
 
 
 void setup() {  
@@ -62,6 +63,8 @@ void setup() {
 
   gameStates.add(new GameState(humans, deadHumans));
   gameStates.add(new GameState(humans, deadHumans));
+  
+  pointYInit();
 
   colors.put("healthy", #00ff00);
   colors.put("infected", #ff0000);
@@ -113,7 +116,8 @@ void draw() {
     } else {
       framesSinceSnapshot = 0;
       gameStates.add(new GameState(humans, deadHumans));
-      //println(gameStates.get(gameStates.size() - 1).healthy);
+      pointY.add(new HashMap<String, Integer>());
+      setPoints();
     }
   }
 

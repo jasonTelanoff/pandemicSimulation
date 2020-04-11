@@ -8,8 +8,6 @@ class Point {
   }
 }
 
-ArrayList<int[]> pointY = new ArrayList<int[]>();
-
 void drawGraph() {
   drawLine(
     new Point(padding, (int) map(gameStates.get(0).values.get("dead"), 0, totalStartPeople, height - padding, padding)), 
@@ -26,21 +24,51 @@ void drawGraph() {
 }
 
 void drawLine(Point prevPoint, int i, String type) {
+  //println(type + " : " + (int) pointY.get(i).get(type));
   Point point = new Point(
     (int) map(i, 0, gameStates.size() - 1, padding, width - padding), 
-    (int) map(gameStates.get(i).values.get(type), 0, totalStartPeople, height - padding, padding));
-    
+    (int) pointY.get(i).get(type));
+
   //noStroke();
   //fill(colors.get(type));
   //  quad(prevDead.x, prevDead.y, pointDead.x, pointDead.y, pointDead.x, height - padding, prevDead.x, height - padding);    
-    
-  strokeWeight(10);
-  stroke(0);
-  
-  stroke(colors.get(type));
-    line(prevPoint.x, prevPoint.y, point.x, point.y);
 
-  if (i < gameStates.size() - 1) {
+  strokeWeight(10);
+  stroke(colors.get(type));
+  line(prevPoint.x, prevPoint.y, point.x, point.y);
+
+  if (i < pointY.size() - 1) {
     drawLine(point, i + 1, type);
   }
+}
+
+void setPoints() {
+  pointAdd("dead");
+  pointAdd("imune");
+  pointAdd("infected");
+  pointAdd("healthy");
+}
+
+void pointAdd(String type) {
+  final int i = pointY.size() - 1;
+  pointY.get(i).put(type, (int) map(gameStates.get(i).values.get(type), 0, totalStartPeople, height - padding, padding));
+}
+
+void pointYInit() {
+  pointY.add(new HashMap<String, Integer>());
+  pointY.add(new HashMap<String, Integer>());
+
+  pointSet(0, "dead");
+  pointSet(0, "imune");
+  pointSet(0, "infected");
+  pointSet(0, "healthy");
+
+  pointSet(1, "dead");
+  pointSet(1, "imune");
+  pointSet(1, "infected");
+  pointSet(1, "healthy");
+}
+
+void pointSet(int i, String type) {
+  pointY.get(i).put(type, (int) map(gameStates.get(i).values.get(type), 0, totalStartPeople, height - padding, padding));
 }
