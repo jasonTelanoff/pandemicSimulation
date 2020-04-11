@@ -37,15 +37,15 @@ class Human {
       if (infected) {
         float num = random(1);
         if (num <= chanceOfImmunity) {
-          imune.stop();
-          imune.play();
+          //imune.stop();
+          //imune.play();
           state = "imune";
           infected = false;
           humans.add(this);
           humans.remove(this);
         } else if (num <= chanceOfImmunity + chanceOfDeath) {
-          death.stop();
-          death.play();
+          //death.stop();
+          //death.play();
           state = "dead";
           infected = false;
           deadHumans.add(this);
@@ -217,11 +217,13 @@ class Human {
       if (otherGuy.state == "healthy") {
         float dist = dist(position.x, position.y, otherGuy.position.x, otherGuy.position.y);
         if (random(1) <= (-pow(dist, 2)*distEffect*spreadChance)/(2*pow(spreadRadius, 1.69)) + spreadChance) {
-            humans.get(i).state = "infected";
-            humans.get(i).infected = true;
-            humans.add(humans.get(i));
-            humans.remove(i);
-            infect.play();
+          humans.get(i).state = "infected";
+          humans.get(i).infected = true;
+          humans.add(humans.get(i));
+          humans.remove(i);
+          infect.stop();
+          infect.cue(0.1);
+          infect.play();
         }
       }
     }

@@ -78,8 +78,8 @@ void setup() {
   colors.put("dead", #696969);
   
   infect = new SoundFile(this, "blop.mp3");
-  imune = new SoundFile(this, "cure.wav");
-  death = new SoundFile(this, "death.mp3");
+  //imune = new SoundFile(this, "cure.wav");
+  //death = new SoundFile(this, "death.mp3");
 }
 
 void draw() {
