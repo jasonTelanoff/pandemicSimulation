@@ -37,11 +37,15 @@ class Human {
       if (infected) {
         float num = random(1);
         if (num <= chanceOfImmunity) {
+          imune.stop();
+          imune.play();
           state = "imune";
           infected = false;
           humans.add(this);
           humans.remove(this);
         } else if (num <= chanceOfImmunity + chanceOfDeath) {
+          death.stop();
+          death.play();
           state = "dead";
           infected = false;
           deadHumans.add(this);
@@ -217,6 +221,7 @@ class Human {
             humans.get(i).infected = true;
             humans.add(humans.get(i));
             humans.remove(i);
+            infect.play();
         }
       }
     }

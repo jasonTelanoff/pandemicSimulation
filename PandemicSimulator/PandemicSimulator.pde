@@ -1,3 +1,5 @@
+import processing.sound.*;
+
 //  _________________
 // |_______   _______| 
 //         | |
@@ -35,7 +37,7 @@ final int snapshotFrames = 30;
 
 
 //Don't change these
-boolean graph = true;
+boolean graph = false;
 int framesSinceSnapshot = 0;
 int totalStartPeople;
 boolean paused = false;
@@ -44,6 +46,10 @@ ArrayList<Human> humans = new ArrayList<Human>();
 ArrayList<Human> deadHumans = new ArrayList<Human>();
 ArrayList<GameState> gameStates = new ArrayList<GameState>();
 ArrayList<HashMap> pointY = new ArrayList<HashMap>();
+
+SoundFile infect;
+SoundFile imune;
+SoundFile death;
 
 
 void setup() {  
@@ -70,6 +76,10 @@ void setup() {
   colors.put("infected", #ff0000);
   colors.put("imune", #0000ff);
   colors.put("dead", #696969);
+  
+  infect = new SoundFile(this, "blop.mp3");
+  imune = new SoundFile(this, "cure.wav");
+  death = new SoundFile(this, "death.mp3");
 }
 
 void draw() {
