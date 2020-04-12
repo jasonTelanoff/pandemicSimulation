@@ -20,12 +20,13 @@ final double chanceOfDeath = 0.00005;
 final double distEffect = 0.5;
 
 //You can use "random", "normal", "boid"
-final String behavior = "boid";
+final String behavior = "normal";
 final static class startNumOfPeople {
   final static int healthy = 199;
   final static int infected = 1;
 };
 final int hospitalRoom = 100;
+final float chanceOfDeathWithHospital = 0.00001;
 
 final static HashMap<String, Integer> colors = new HashMap<String, Integer>();
 

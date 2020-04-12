@@ -43,14 +43,14 @@ class Human {
           infected = false;
           humans.add(this);
           humans.remove(this);
-        } else if (num <= chanceOfImmunity + chanceOfDeath) {
+        } else if (gameStates.get(gameStates.size() - 1).values.get("infected") > hospitalRoom && num <= chanceOfImmunity + chanceOfDeath) {
           death.stop();
           death.play();
           state = "dead";
           infected = false;
           deadHumans.add(this);
           humans.remove(this);
-        } else {
+        } else if(gameStates.get(gameStates.size() - 1).values.get("infected") <= hospitalRoom && num <= chanceOfImmunity + chanceOfDeathWithHospital) {} else {
           spread();
         }
       }
