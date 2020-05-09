@@ -36,6 +36,9 @@ final int padding = 50;
 
 final int snapshotFrames = 30;
 
+// This causes a bit of lag. If there is a large population, this is not recomended.
+final boolean showDirection = false;
+
 
 //Don't change these
 boolean graph = false;

@@ -24,14 +24,9 @@ void drawGraph() {
 }
 
 void drawLine(Point prevPoint, int i, String type) {
-  //println(type + " : " + (int) pointY.get(i).get(type));
   Point point = new Point(
     (int) map(i, 0, gameStates.size() - 1, padding, width - padding), 
     (int) pointY.get(i).get(type));
-
-  //noStroke();
-  //fill(colors.get(type));
-  //  quad(prevDead.x, prevDead.y, pointDead.x, pointDead.y, pointDead.x, height - padding, prevDead.x, height - padding);    
 
   strokeWeight(10);
   stroke(colors.get(type));

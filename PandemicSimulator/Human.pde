@@ -24,11 +24,13 @@ class Human {
   void show() {
     color col = col();
     fill(col);
-    //pushMatrix();
-    //translate(position.x, position.y);
-    //rotate(movement.heading());
-    //rect(0, 0, size, size);
-    //popMatrix();
+    if (showDirection) {
+      pushMatrix();
+      translate(position.x, position.y);
+      rotate(movement.heading());
+      rect(0, 0, size, size);
+      popMatrix();
+    }
     square(position.x, position.y, size);
   }
 
@@ -50,7 +52,8 @@ class Human {
           infected = false;
           deadHumans.add(this);
           humans.remove(this);
-        } else if(gameStates.get(gameStates.size() - 1).values.get("infected") <= hospitalRoom && num <= chanceOfImmunity + chanceOfDeathWithHospital) {} else {
+        } else if (gameStates.get(gameStates.size() - 1).values.get("infected") <= hospitalRoom && num <= chanceOfImmunity + chanceOfDeathWithHospital) {
+        } else {
           spread();
         }
       }
@@ -179,18 +182,18 @@ class Human {
 
   PVector cohesion(ArrayList<Human> _humans) {
     int neighbordist = 50;
-    PVector sum = new PVector(0, 0); // Start with empty vector to accumulate all locations
+    PVector sum = new PVector(0, 0);
     int count = 0;
     for (int i = 0; i < _humans.size(); i++) {
       float d = PVector.dist(position, _humans.get(i).position);
       if ((d > 0) && (d < neighbordist)) {
-        sum.add(_humans.get(i).position); // Add location
+        sum.add(_humans.get(i).position);
         count++;
       }
     }
     if (count > 0) {
       sum.div(count);
-      return seek(sum); // Steer towards the location
+      return seek(sum);
     } else {
       return new PVector(0, 0);
     }
