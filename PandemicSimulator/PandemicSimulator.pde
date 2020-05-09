@@ -13,7 +13,7 @@ import processing.sound.*;
 //
 //Feel free to change these
 
-final double spreadChance = .005;
+final double spreadChance = .0005;
 final int spreadRadius = 100;
 final double chanceOfImmunity = .0001;
 final double chanceOfDeath = 0.00005;
