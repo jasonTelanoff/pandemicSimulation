@@ -1,4 +1,4 @@
-# pandemicSimulation
+# Pandemic Simulation
 
 Hello! This is my Pandemic Simulation. It, of course, simulates how a pandemic might spread depending on different variables. It demonstrates this is a vary useful way. You can view the simulation take place or view a graph of the individuals in the simulation as it hapens. To switch between these, click any key except for space -- space will pause or unpause the program. Have fun!
 
