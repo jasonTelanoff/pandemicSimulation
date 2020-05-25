@@ -22,8 +22,8 @@ final double distEffect = 0.5;
 //You can use "random", "normal", "boid"
 final String behavior = "boid";
 final static class startNumOfPeople {
-  final static int healthy = 399;
-  final static int infected = 1;
+  final static int healthy = 199;
+  final static int infected = 2;
 };
 final int hospitalRoom = 100;
 final float chanceOfDeathWithHospital = 0.00001;
