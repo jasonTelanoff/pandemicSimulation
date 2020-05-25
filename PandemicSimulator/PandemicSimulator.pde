@@ -16,7 +16,7 @@ import processing.sound.*;
 final double spreadChance = .0005;
 final int spreadRadius = 100;
 final double chanceOfImmunity = .0001;
-final double chanceOfDeath = 0.00005;
+final double chanceOfDeath = 0.0001;
 final double distEffect = 0.5;
 
 //You can use "random", "normal", "boid"
