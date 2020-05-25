@@ -37,42 +37,50 @@ class Human {
   void update() {
     if (state != "dead") {
       if (infected) {
-        float num = random(1);
-        if (num <= chanceOfImmunity) {
-          imune.stop();
-          imune.play();
-          state = "imune";
-          infected = false;
-          humans.add(this);
-          humans.remove(this);
-        } else if (gameStates.get(gameStates.size() - 1).values.get("infected") > hospitalRoom && num <= chanceOfImmunity + chanceOfDeath) {
-          death.stop();
-          death.play();
-          state = "dead";
-          infected = false;
-          deadHumans.add(this);
-          humans.remove(this);
-        } else if (gameStates.get(gameStates.size() - 1).values.get("infected") <= hospitalRoom && num <= chanceOfImmunity + chanceOfDeathWithHospital) {
-        } else {
-          spread();
-        }
+        tryToInfect();
       }
-      switch (behavior) {
-      case "random":
-        randomMove();
-        break;
-      case "normal":
-        normalMove();
-        break;
-      case "boid":
-        boidMove();
-        break;
-      default:
-        normalMove();
-        break;
-      }
-      borders();
+      move();
     }
+  }
+
+  void tryToInfect() {
+    float num = random(1);
+    if (num <= chanceOfImmunity) {
+      imune.stop();
+      imune.play();
+      state = "imune";
+      infected = false;
+      humans.add(this);
+      humans.remove(this);
+    } else if (gameStates.get(gameStates.size() - 1).values.get("infected") > hospitalRoom && num <= chanceOfImmunity + chanceOfDeath) {
+      death.stop();
+      death.play();
+      state = "dead";
+      infected = false;
+      deadHumans.add(this);
+      humans.remove(this);
+    } else if (gameStates.get(gameStates.size() - 1).values.get("infected") <= hospitalRoom && num <= chanceOfImmunity + chanceOfDeathWithHospital) {
+    } else {
+      spread();
+    }
+  }
+
+  void move() {
+    switch (behavior) {
+    case "random":
+      randomMove();
+      break;
+    case "normal":
+      normalMove();
+      break;
+    case "boid":
+      boidMove();
+      break;
+    default:
+      normalMove();
+      break;
+    }
+    borders();
   }
 
   void randomMove() {
